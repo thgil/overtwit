@@ -43,8 +43,7 @@ module.exports = (app) ->
     app.set 'views', path.join(config.root, 'views')
 
 
-  app.engine 'html', require('ejs').renderFile
-  app.set 'view engine', 'html'
+  app.set 'view engine', 'jade'
   app.use morgan('dev')
   app.use bodyParser()
   app.use methodOverride()

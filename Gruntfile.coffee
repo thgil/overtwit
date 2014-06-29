@@ -140,7 +140,7 @@ module.exports = (grunt) ->
     # Automatically inject Bower components into the app
     'bower-install':
       app: 
-        html: '<%= yeoman.app %>/views/index.html'
+        html: '<%= yeoman.app %>/views/index.jade'
         ignorePath: '<%= yeoman.app %>/'
 
     # Compiles CoffeeScript to JavaScript
@@ -311,7 +311,7 @@ module.exports = (grunt) ->
           expand: true
           cwd: '<%= yeoman.app %>/views'
           dest: '<%= yeoman.tmp %>/app/views/'
-          src: '**/*.html'
+          src: '**/*.jade'
         ,
           expand: true
           cwd: '<%= yeoman.app %>/fonts'
