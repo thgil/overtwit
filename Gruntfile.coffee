@@ -48,24 +48,28 @@ module.exports = (grunt) ->
           '<%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'
           '<%= yeoman.lib %>/{,*/}*.{coffee,litcoffee,coffee.md}'
         ]
-        tasks: ['newer:coffee:dist']
+        tasks: ['newer:coffee:dist','copy:app']
+        options:
+          livereload: true
       coffeeTest:
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}']
         tasks: ['newer:coffee:test', 'karma']
-      
+
       styles:
         files: ['<%= yeoman.app %>/styles/{,*/}*.css']
         tasks: ['newer:copy:styles', 'autoprefixer']
-      
+
       gruntfile:
         files: ['Gruntfile.coffee']
       livereload:
         files: [
+          '<%= yeoman.app %>/views/{,*/*}*.{html,jade}'
           '<%= yeoman.app %>/views/{,*#*}*.{html,jade}'
           '{<%= yeoman.tmp %>,<%= yeoman.app %>}/styles/{,*#*}*.css'
           '{<%= yeoman.tmp %>,<%= yeoman.app %>}/scripts/{,*#*}*.js'
           '<%= yeoman.app %>/images/{,*#*}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+        tasks: ['copy:app']
         options:
           livereload: true
       express:
@@ -139,7 +143,7 @@ module.exports = (grunt) ->
 
     # Automatically inject Bower components into the app
     'bower-install':
-      app: 
+      app:
         html: '<%= yeoman.app %>/views/index.jade'
         ignorePath: '<%= yeoman.app %>/'
 
@@ -176,7 +180,7 @@ module.exports = (grunt) ->
           dest: '<%= yeoman.tmp %>/client/spec'
           ext: '.js'
         ]
-    
+
 
     # Renames files for browser caching purposes
     rev:
@@ -376,7 +380,7 @@ module.exports = (grunt) ->
     # Test settings
     karma:
       unit:
-        configFile: 'karma.conf.coffee'
+        configFile: 'test/karma.conf.coffee'
         singleRun: true
 
     mochaTest:
@@ -459,11 +463,11 @@ module.exports = (grunt) ->
     'concat'
     'ngmin'
     'copy:dist'
-    'cdnify'
-    'cssmin'
-    'uglify'
-    'rev'
-    'usemin'
+    # 'cdnify'
+    # 'cssmin'
+    # 'uglify'
+    # 'rev'
+    # 'usemin'
   ]
 
   grunt.registerTask 'heroku', ->
