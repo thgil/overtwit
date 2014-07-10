@@ -12,12 +12,15 @@ exports.setup = function (User, config) {
         'twitchtv.id': profile.id
       },
       function(err, user) {
+        if (err) {
+          return done(err);
+        }
         if (!user) {
           user = new User({
-            name: profile.displayName,
-            email: profile.emails[0].value,
+            name: profile.name,
+            email: profile.email,
             role: 'user',
-            username: profile.username,
+            username: profile.display_name,
             provider: 'twitchtv',
             twitchtv: profile._json
           });
