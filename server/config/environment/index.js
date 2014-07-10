@@ -41,6 +41,12 @@ var all = {
     }
   },
 
+  twitch: {
+    clientID:     process.env.TWITCH_ID || 'id',
+    clientSecret: process.env.TWITCH_SECRET || 'secret',
+    callbackURL:  'http://localhost:9000/auth/twitch/callback'
+  },
+
 };
 
 // Export the config object based on the NODE_ENV
