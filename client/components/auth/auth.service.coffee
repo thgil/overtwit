@@ -4,6 +4,8 @@ angular.module('overtwitApp').factory 'Auth', ($location, $rootScope, $http, Use
   currentUser = {}
   currentUser = User.get() if $cookieStore.get('token')
 
+  console.log 'CURRENT-USER',currentUser
+
   ###
   Authenticate user and save token
 
